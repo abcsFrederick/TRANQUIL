@@ -138,7 +138,7 @@ for g in SAMPLES:
 try:
     TOOLSYAML = config["tools"]
 except KeyError:
-    TOOLSYAML = join(WORKDIR,"tools.yaml")
+    TOOLSYAML = join(WORKDIR,"resources","tools.yaml")
 check_readaccess(TOOLSYAML)
 with open(TOOLSYAML) as f:
     TOOLS = yaml.safe_load(f)
