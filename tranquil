@@ -130,6 +130,14 @@ sed -e "s/PIPELINE_HOME/${PIPELINE_HOME//\//\\/}/g" \
 
 }
 
+function _set_test_samplemanifest() {
+
+sed -e "s/PIPELINE_HOME/${PIPELINE_HOME//\//\\/}/g" \
+    -e "s/WORKDIR/${WORKDIR//\//\\/}/g" \
+    ${PIPELINE_HOME}/config/samples.tsv > $WORKDIR/samples.tsv
+
+}
+
 function init() {
 
 # This function initializes the workdir by:
@@ -143,7 +151,7 @@ mkdir -p $WORKDIR
 
 # copy config and samples files
 _set_config
-cp ${PIPELINE_HOME}/config/samples.tsv $WORKDIR/
+_set_test_samplemanifest
 
 #create log and stats folders
 if [ ! -d $WORKDIR/logs ]; then 
