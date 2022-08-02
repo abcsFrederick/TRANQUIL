@@ -1,3 +1,5 @@
-sampleName	path_to_R1_fastq	path_to_R2_fastq
-Sample1	<path to sample1 R1 fastq>	<path to sample1 R2 fastq>
-Sample2	<path to sample2 R1 fastq>	<path to sample2 R2 fastq>
+sampleName	replicateNumber	path_to_R1_fastq
+Tet1n2DKOalkBtRNA	1	PIPELINE_HOME/.tests/Tet1n2DKOalkBtRNA.subset.rep1.fastq.gz
+Tet1n2DKOalkBtRNA	2	PIPELINE_HOME/.tests/Tet1n2DKOalkBtRNA.subset.rep1.fastq.gz
+WTtRNA	1	PIPELINE_HOME/.tests/WTtRNA.subset.rep1.fastq.gz
+WTtRNA	2	PIPELINE_HOME/.tests/WTtRNA.subset.rep1.fastq.gz

@@ -4,5 +4,7 @@ include: join("rules","init.smk")
 localrules: all
 rule all:
     input:
+    # trimmed fastqs
+    expand(join(RESULTSDIR,"fastqs","{replicate}.trim.fastq.gz"),replicate=REPLICATES),
 
 include: join("rules","dummy.smk")

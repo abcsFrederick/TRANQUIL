@@ -12,11 +12,24 @@ module purge
 #
 # DISCLAIMER: This wrapper only works on BIOWULF
 
-# setting python and snakemake versions
+# setting python and snakemake versions 
+# only for BIOWULF
 PYTHON_VERSION="python/3.7"
 SNAKEMAKE_VERSION="snakemake/5.24.1"
+# are you on biowulf or frce?
+if [ "$HOSTNAME" == "biowulf.nih.gov" ]; then
+  HOST="BIOWULF"
+elif [ "$HOSTNAME" == "fsitgl-head01p.ncifcrf.gov" ];then
+  HOST="FRCE"
+fi
 # set extra singularity bindings
-EXTRA_SINGULARITY_BINDS="/lscratch, /data/CCBR_Pipeliner/"
+if [ "$HOST" == "BIOWULF" ];then
+  EXTRA_SINGULARITY_BINDS="/lscratch, /data/CCBR_Pipeliner/"
+elif [ "$HOST" == "FRCE" ];then
+  EXTRA_SINGULARITY_BINDS="/scratch/cluster_scratch/${USER}, /mnt/projects/CCBR-Pipelines"
+else
+  err Can only run on BIOWULF or FRCE
+fi
 SCRIPTNAME="$0"
 SCRIPTDIRNAME=$(readlink -f $(dirname $0))
 SCRIPTBASENAME=$(readlink -f $(basename $0))
@@ -96,7 +109,7 @@ function err() {
 # @Ouput:
 #     @param2: echo the error message with the usage to the screen
 
-cat <<< "
+cat << "
 #################################################################
 ##### ERROR ############ ERROR ########## ERROR #################
 #################################################################
@@ -381,16 +394,35 @@ function run() {
 # snakemake command below
   cat > ${WORKDIR}/submit_script.sbatch << EOF
 #!/bin/bash
-#SBATCH --job-name="CCBRPipeline"
+#SBATCH --job-name="TRANQUIL"
 #SBATCH --mem=10g
 #SBATCH --partition="norm"
 #SBATCH --time=96:00:00
 #SBATCH --cpus-per-task=2
+#SBATCH --mail-type=BEGIN,END,FAIL
 
+module purge
+EOF
+
+if [ "$HOST" == "BIOWULF" ]; then
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
 module load $PYTHON_VERSION
 module load $SNAKEMAKE_VERSION
 module load singularity
+EOF
 
+elif [ "$HOST" == "FRCE" ];then
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
+module load singularity/3.7.2 > /dev/null
+# Add my own version of python and snakemake to the PATH
+export PATH=/mnt/projects/CCBR-Pipelines/bin/:${PATH}
+EOF
+
+fi
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
 cd \$SLURM_SUBMIT_DIR
 
 snakemake -s $SNAKEFILE \
@@ -402,7 +434,23 @@ snakemake -s $SNAKEFILE \
 --latency-wait 120 \
 --configfile ${WORKDIR}/config.yaml \
 --cluster-config ${PIPELINE_HOME}/resources/cluster.json \
---cluster "sbatch --gres {cluster.gres} --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+EOF
+
+if [ "$HOST" == "BIOWULF" ]; then
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
+--cluster "sbatch --gres "lscratch:256" --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+EOF
+
+elif [ "$HOST" == "FRCE" ];then
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
+--cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+EOF
+
+fi
+
+cat >> ${WORKDIR}/submit_script.sbatch << EOF
 -j 500 \
 --rerun-incomplete \
 --keep-going \
@@ -431,7 +479,7 @@ snakemake $1 -s $SNAKEFILE \
 --latency-wait 120 \
 --configfile ${WORKDIR}/config.yaml \
 --cluster-config ${PIPELINE_HOME}/config/cluster.json \
---cluster "sbatch --gres {cluster.gres} --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+--cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
 -j 500 \
 --rerun-incomplete \
 --keep-going \

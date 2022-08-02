@@ -8,7 +8,11 @@ import yaml
 # import glob
 # import shutil
 #########################################################
-
+# no truncations during print pandas data frames
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
 
 #########################################################
 # FILE-ACTION FUNCTIONS 
@@ -75,31 +79,35 @@ for f in ["samplemanifest"]:
 # CREATE SAMPLE DATAFRAME
 #########################################################
 # each line in the samplemanifest is a replicate
+# samplemanifest has the following columns:
+# sampleName	replicateNumber	path_to_R1_fastq
 # multiple replicates belong to a sample
 # currently only 1,2,3 or 4 replicates per sample is supported
-# REPLICATESDF = pd.read_csv(config["samplemanifest"],sep="\t",header=0,index_col="replicateName")
-# REPLICATES = list(REPLICATESDF.index)
-# SAMPLES = list(REPLICATESDF.sampleName.unique())
+REPLICATESDF = pd.read_csv(config["samplemanifest"],sep="\t",header=0)
+REPLICATESDF["replicateName"] = REPLICATESDF.apply(lambda row: row["sampleName"] + "_" + str(row["replicateNumber"]), axis=1)
+REPLICATESDF = REPLICATESDF.set_index("replicateName")
+REPLICATES = list(REPLICATESDF.index)
+SAMPLES = list(REPLICATESDF.sampleName.unique())
 
-# print("#"*100)
-# print("# Checking Sample Manifest...")
-# print("# \tTotal Replicates in manifest : "+str(len(REPLICATES)))
-# print("# \tTotal Samples in manifest : "+str(len(SAMPLES)))
-# print("# Checking read access to raw fastqs...")
+print("#"*100)
+print("# Checking Sample Manifest...")
+print("# \tTotal Replicates in manifest : "+str(len(REPLICATES)))
+print("# \tTotal Samples in manifest : "+str(len(SAMPLES)))
+print("# Checking read access to raw fastqs...")
 
-# REPLICATESDF["R1"]=join(RESOURCESDIR,"dummy")
+REPLICATESDF["R1"]=join(RESOURCESDIR,"dummy")
 # REPLICATESDF["R2"]=join(RESOURCESDIR,"dummy")
 # REPLICATESDF["PEorSE"]="PE"
 
-# for replicate in REPLICATES:
-#     R1file=REPLICATESDF["path_to_R1_fastq"][replicate]
+for replicate in REPLICATES:
+    R1file=REPLICATESDF["path_to_R1_fastq"][replicate]
 #     R2file=REPLICATESDF["path_to_R2_fastq"][replicate]
 #     # print(replicate,R1file,R2file)
-#     check_readaccess(R1file)
-#     R1filenewname=join(WORKDIR,"fastqs",replicate+".R1.fastq.gz")
-#     if not os.path.exists(R1filenewname):
-#         os.symlink(R1file,R1filenewname)
-#     REPLICATESDF.loc[[replicate],"R1"]=R1filenewname
+    check_readaccess(R1file)
+    R1filenewname=join(WORKDIR,"fastqs",replicate+".R1.fastq.gz")
+    if not os.path.exists(R1filenewname):
+        os.symlink(R1file,R1filenewname)
+    REPLICATESDF.loc[[replicate],"R1"]=R1filenewname
 #     if str(R2file)!='nan':
 #         check_readaccess(R2file)
 #         R2filenewname=join(WORKDIR,"fastqs",replicate+".R2.fastq.gz")
@@ -113,12 +121,13 @@ for f in ["samplemanifest"]:
 #         exit()
 #         REPLICATESDF.loc[[replicate],"PEorSE"]="SE"
 
-# print("# Read access to all raw fastqs is confirmed!")
-# print("#"*100)
+print("# Read access to all raw fastqs is confirmed!")
+print("# Symlinks to all raw fastqs is created!")
+print("#"*100)
 
-# SAMPLE2REPLICATES=dict()
-# for g in SAMPLES:
-#     SAMPLE2REPLICATES[g]=list(REPLICATESDF[REPLICATESDF['sampleName']==g].index)
+SAMPLE2REPLICATES=dict()
+for g in SAMPLES:
+    SAMPLE2REPLICATES[g]=list(REPLICATESDF[REPLICATESDF['sampleName']==g].index)
 
 # print(REPLICATESDF.columns)
 # print(REPLICATESDF.sampleName)

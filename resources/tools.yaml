@@ -2,6 +2,7 @@ bowtie2:
  version: "bowtie/2-2.4.2"
 cutadapt:
  version: "cutadapt/1.18"
+ docker: "docker://nciccbr/ncigb_cutadapt_v1.18:latest"
 fastqc:
  version: "fastqc/0.11.9"
 hisat:

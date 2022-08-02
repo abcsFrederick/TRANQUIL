@@ -4,6 +4,14 @@
 workdir: "WORKDIR"
 #
 # tab delimited samples file ... should have the following 3 columns
-# sampleName	path_to_R1_fastq	path_to_R2_fastq
+# sampleName	replicateNumber	path_to_R1_fastq
+# samples need to have atleast 2 replicates
 #
-samples: "WORKDIR/samples.tsv"
+samplemanifest: "WORKDIR/samples.tsv"
+
+# trimming details
+illumina_sequencing_adapter: "GATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNNTCTCGTATGCCGTCTTCTGCTTG"  # generic illumin seq adapter
+linker: "NNNNNNCACTCGGGCACCAAGGA"                                                               # linker sequence
+n5trim: "4"                                                                                     # number of bases to trim from 5prime end
+nextseq_trim_q: "15"                                                                                    # min. len. after trimming
+minlen: "10"                                                                                    # min. len. after trimming
