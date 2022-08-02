@@ -109,12 +109,15 @@ function err() {
 # @Ouput:
 #     @param2: echo the error message with the usage to the screen
 
-cat << "
+cat << EOF
 #################################################################
 ##### ERROR ############ ERROR ########## ERROR #################
 #################################################################
   $@
-" && usage_only && exit 1 1>&2; 
+EOF
+
+usage_only && exit 1 1>&2; 
+
 }
 
 
