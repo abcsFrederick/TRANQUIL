@@ -153,7 +153,7 @@ if [ ! -d $WORKDIR/stats ];then
   mkdir -p $WORKDIR/stats;echo "Stats Dir: $WORKDIR/stats"
 fi
 
-cat < EOF
+cat << EOF
 #################################################################
 #################################################################
 Done Initializing $WORKDIR. 
