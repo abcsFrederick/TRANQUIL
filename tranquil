@@ -191,8 +191,20 @@ function runcheck(){
 # Check "job-essential" files and load required modules
 
   check_essential_files
+
+if [ "$HOST" == "BIOWULF" ]; then
+
   module load $PYTHON_VERSION
   module load $SNAKEMAKE_VERSION
+  module load singularity
+
+elif [ "$HOST" == "FRCE" ];then
+
+  module load singularity/3.7.2 > /dev/null
+  # Add my own version of python and snakemake to the PATH
+  export PATH=/mnt/projects/CCBR-Pipelines/bin/:${PATH}
+
+fi
 
 }
 
