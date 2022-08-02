@@ -148,11 +148,11 @@ cp ${PIPELINE_HOME}/config/samples.tsv $WORKDIR/
 #create log and stats folders
 if [ ! -d $WORKDIR/logs ]; then 
   mkdir -p $WORKDIR/logs
-  echo -ne "Logs Dir: \t $WORKDIR/logs\n"
+  echo -ne "Logs Dir: \t\t $WORKDIR/logs\n"
 fi
 if [ ! -d $WORKDIR/stats ];then 
   mkdir -p $WORKDIR/stats
-  echo -ne "Stats Dir: \t $WORKDIR/stats\n"
+  echo -ne "Stats Dir: \t\t $WORKDIR/stats\n"
 fi
 
 cat << EOF
@@ -511,7 +511,7 @@ function reset() {
 
 # Delete the workdir and re-initialize it
 
-  echo -ne "Working Dir: \t $WORKDIR\n"
+  echo -ne "Working Dir: \t\t $WORKDIR\n"
   if [ ! -d $WORKDIR ];then err "Folder $WORKDIR does not exist!";fi
   echo "Deleting $WORKDIR"
   rm -rf $WORKDIR
