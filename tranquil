@@ -49,11 +49,13 @@ function get_git_commitid_tag() {
   echo -ne "$gid\t$tag"
 
 }
-
+echo "..."
 PIPELINE_HOME=$(readlink -f $(dirname "$0"))
 echo "Pipeline Dir: $PIPELINE_HOME"
+echo "..."
 SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
 echo "Snakefile: $SNAKEFILE"
+echo "..."
 GIT_COMMIT_TAG=$(get_git_commitid_tag $PIPELINE_HOME)
 echo "Git Commit/Tag: $GIT_COMMIT_TAG"
 
@@ -93,7 +95,6 @@ cat << EOF
 #################################################################
 Running ${SCRIPTBASENAME} ...
 TRANQUIL (TRna AbundaNce QUantification pIpeLine)
-echo "Git Commit/Tag: $GIT_COMMIT_TAG"
 EOF
 
 usage_only
