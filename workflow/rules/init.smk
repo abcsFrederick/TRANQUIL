@@ -138,7 +138,7 @@ for g in SAMPLES:
 try:
     TOOLSYAML = config["tools"]
 except KeyError:
-    TOOLSYAML = join(WORKDIR,"resources","tools.yaml")
+    TOOLSYAML = join(RESOURCESDIR,"tools.yaml")
 check_readaccess(TOOLSYAML)
 with open(TOOLSYAML) as f:
     TOOLS = yaml.safe_load(f)
@@ -153,7 +153,7 @@ with open(TOOLSYAML) as f:
 try:
     CLUSTERJSON = config["clusterjson"]
 except KeyError:
-    CLUSTERJSON = join(WORKDIR,"cluster.json")
+    CLUSTERJSON = join(RESOURCESDIR,"cluster.json")
 check_readaccess(CLUSTERJSON)
 with open(CLUSTERJSON) as json_file:
     CLUSTER = json.load(json_file)
