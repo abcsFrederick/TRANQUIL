@@ -50,13 +50,6 @@ CONFIGFILE = str(workflow.overwrite_configfiles[0])
 WORKDIR=config['workdir']
 RESULTSDIR=join(WORKDIR,"results")
 
-# get scripts folder
-try:
-    SCRIPTSDIR = config["scriptsdir"]
-except KeyError:
-    SCRIPTSDIR = join(WORKDIR,"scripts")
-check_existence(SCRIPTSDIR)
-
 # get resources folder
 try:
     RESOURCESDIR = config["resourcesdir"]
