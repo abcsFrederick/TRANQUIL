@@ -54,9 +54,9 @@ echo "#################################################################"
 PIPELINE_HOME=$(readlink -f $(dirname "$0"))
 echo -ne "Pipeline Dir: \t $PIPELINE_HOME\n"
 SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
-echo "Snakefile: \t $SNAKEFILE\n"
+echo -ne "Snakefile: \t $SNAKEFILE\n"
 GIT_COMMIT_TAG=$(get_git_commitid_tag $PIPELINE_HOME)
-echo "Git Commit/Tag: \t $GIT_COMMIT_TAG\n"
+echo -ne "Git Commit/Tag: \t $GIT_COMMIT_TAG\n"
 
 function usage_only() {
 
