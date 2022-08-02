@@ -41,8 +41,6 @@ def get_file_size(filename):
 # DEFINE CONFIG FILE AND READ IT
 #########################################################
 CONFIGFILE = str(workflow.overwrite_configfiles[0])
-print(config)
-exit()
 
 # set memory limit 
 # used for sambamba sort, etc
@@ -163,7 +161,7 @@ with open(CLUSTERJSON) as json_file:
 ## Create lambda functions to allow a way to insert read-in values
 ## as rule directives
 getthreads=lambda rname:int(CLUSTER[rname]["threads"]) if rname in CLUSTER and "threads" in CLUSTER[rname] else int(CLUSTER["__default__"]["threads"])
-getmemg=lambda rname:CLUSTER[rname]["mem"] if rname in CLUSTER else CLUSTER["__default__"]["mem"]
+getmemg=lambda rname:CLUSTER[rname]["mem"] if rname in CLUSTER and "mem" in CLUSTER[rname] else CLUSTER["__default__"]["mem"]
 getmemG=lambda rname:getmemg(rname).replace("g","G")
 #########################################################
 
