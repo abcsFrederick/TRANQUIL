@@ -173,7 +173,7 @@ print("# Pipeline Parameters:")
 print("#"*100)
 print("# Working dir :",WORKDIR)
 print("# Results dir :",RESULTSDIR)
-print("# Scripts dir :",SCRIPTSDIR)
+# print("# Scripts dir :",SCRIPTSDIR)
 print("# Resources dir :",RESOURCESDIR)
 print("# Cluster JSON :",CLUSTERJSON)
 
