@@ -5,7 +5,7 @@ rule trim:
         outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.fastq.gz")
     envmodules:
         TOOLS["cutadapt"]["version"]
-    container: config["cutadapt"]["docker"]    
+    container: tools["cutadapt"]["docker"]    
     threads: getthreads("trim")
     params: 
         memg = getmemg("trim"),

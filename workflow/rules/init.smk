@@ -41,6 +41,8 @@ def get_file_size(filename):
 # DEFINE CONFIG FILE AND READ IT
 #########################################################
 CONFIGFILE = str(workflow.overwrite_configfiles[0])
+print(config)
+exit()
 
 # set memory limit 
 # used for sambamba sort, etc
