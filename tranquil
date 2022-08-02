@@ -52,9 +52,9 @@ function get_git_commitid_tag() {
 echo "#################################################################"
 echo "#################################################################"
 PIPELINE_HOME=$(readlink -f $(dirname "$0"))
-echo -ne "Pipeline Dir: \t $PIPELINE_HOME\n"
+echo -ne "Pipeline Dir: \t\t $PIPELINE_HOME\n"
 SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
-echo -ne "Snakefile: \t $SNAKEFILE\n"
+echo -ne "Snakefile: \t\t $SNAKEFILE\n"
 GIT_COMMIT_TAG=$(get_git_commitid_tag $PIPELINE_HOME)
 echo -ne "Git Commit/Tag: \t $GIT_COMMIT_TAG\n"
 
