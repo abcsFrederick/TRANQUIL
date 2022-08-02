@@ -57,6 +57,7 @@ SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
 echo -ne "Snakefile: \t\t $SNAKEFILE\n"
 GIT_COMMIT_TAG=$(get_git_commitid_tag $PIPELINE_HOME)
 echo -ne "Git Commit/Tag: \t $GIT_COMMIT_TAG\n"
+echo -ne "Host: \t $HOST\n"
 
 function usage_only() {
 
