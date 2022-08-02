@@ -185,7 +185,7 @@ function check_essential_files() {
 # By default config.yaml and samples.tsv are considered essential files.
 
   if [ ! -d $WORKDIR ];then err "Folder $WORKDIR does not exist!"; fi
-  for f in config.yaml samples.tsv $WORKDIR/resources/tools.yaml; do
+  for f in config.yaml samples.tsv resources/tools.yaml ; do
     if [ ! -f $WORKDIR/$f ]; then 
       err "Error: '${f}' file not found in workdir ... initialize first!"
     fi
