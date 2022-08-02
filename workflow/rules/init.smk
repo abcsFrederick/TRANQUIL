@@ -177,24 +177,24 @@ print("# Results dir :",RESULTSDIR)
 print("# Resources dir :",RESOURCESDIR)
 print("# Cluster JSON :",CLUSTERJSON)
 
-GENOME=config["genome"]
-INDEXDIR=config[GENOME]["indexdir"]
-print("# Bowtie index dir:",INDEXDIR)
+# GENOME=config["genome"]
+# INDEXDIR=config[GENOME]["indexdir"]
+# print("# Bowtie index dir:",INDEXDIR)
 
-GENOMEFILE=join(INDEXDIR,GENOME+".genome") # genome file is required by macs2 peak calling
-check_readaccess(GENOMEFILE)
-print("# Genome :",GENOME)
-print("# .genome :",GENOMEFILE)
+# GENOMEFILE=join(INDEXDIR,GENOME+".genome") # genome file is required by macs2 peak calling
+# check_readaccess(GENOMEFILE)
+# print("# Genome :",GENOME)
+# print("# .genome :",GENOMEFILE)
 
-GENOMEFA=join(INDEXDIR,GENOME+".fa") # genome file is required by motif enrichment rule
-check_readaccess(GENOMEFA)
-print("# Genome fasta:",GENOMEFA)
+# GENOMEFA=join(INDEXDIR,GENOME+".fa") # genome file is required by motif enrichment rule
+# check_readaccess(GENOMEFA)
+# print("# Genome fasta:",GENOMEFA)
 
 QCDIR=join(RESULTSDIR,"QC")
 
-FASTQ_SCREEN_CONFIG=config["fastqscreen_config"]
-check_readaccess(FASTQ_SCREEN_CONFIG)
-print("# FQscreen config  :",FASTQ_SCREEN_CONFIG)
+# FASTQ_SCREEN_CONFIG=config["fastqscreen_config"]
+# check_readaccess(FASTQ_SCREEN_CONFIG)
+# print("# FQscreen config  :",FASTQ_SCREEN_CONFIG)
 
 
 #########################################################
