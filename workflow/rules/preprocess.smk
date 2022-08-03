@@ -28,7 +28,7 @@ if [ -w "/lscratch/${{SLURM_JOB_ID}}" ];then
 elif [ -w "/scratch/cluster_scratch/${{USER}}" ];then
     # if running on FRCE
     tmp="/scratch/cluster_scratch/${{USER}}"
-    tmpdir=(mktemp -d -p $tmp)
+    tmpdir=$(mktemp -d -p $tmp)
     cleanup=1
 else
     # Catchall for "other" HPCs
