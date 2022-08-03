@@ -456,42 +456,42 @@ fi
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
 cd \$SLURM_SUBMIT_DIR
 
-snakemake -s $SNAKEFILE \
---directory $WORKDIR \
---use-singularity \
---singularity-args "$SINGULARITY_BINDS" \
---use-envmodules \
---printshellcmds \
---latency-wait 120 \
---configfile ${WORKDIR}/config.yaml \
---cluster-config ${PIPELINE_HOME}/resources/cluster.json \
+snakemake -s $SNAKEFILE \\
+--directory $WORKDIR \\
+--use-singularity \\
+--singularity-args "$SINGULARITY_BINDS" \\
+--use-envmodules \\
+--printshellcmds \\
+--latency-wait 120 \\
+--configfile ${WORKDIR}/config.yaml \\
+--cluster-config ${PIPELINE_HOME}/resources/cluster.json \\
 EOF
 
 if [ "$HOST" == "BIOWULF" ]; then
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
---cluster "sbatch --gres "lscratch:256" --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+--cluster "sbatch --gres "lscratch:256" --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \\
 EOF
 
 elif [ "$HOST" == "FRCE" ];then
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
---cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+--cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \\
 EOF
 
 fi
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
--j 500 \
---rerun-incomplete \
---keep-going \
---stats ${WORKDIR}/snakemake.stats \
+-j 500 \\
+--rerun-incomplete \\
+--keep-going \\
+--stats ${WORKDIR}/snakemake.stats \\
 2>&1|tee ${WORKDIR}/snakemake.log
 
 if [ "\$?" -eq "0" ];then
-  snakemake -s $SNAKEFILE \
-  --directory $WORKDIR \
-  --report ${WORKDIR}/runslurm_snakemake_report.html \
+  snakemake -s $SNAKEFILE \\
+  --directory $WORKDIR \\
+  --report ${WORKDIR}/runslurm_snakemake_report.html \\
   --configfile ${WORKDIR}/config.yaml 
 fi
 
