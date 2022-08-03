@@ -499,8 +499,6 @@ bash <(curl https://raw.githubusercontent.com/CCBR/Tools/master/Biowulf/gather_c
 
 EOF
 
-exit
-
   sbatch ${WORKDIR}/submit_script.sbatch
 
   else # for unlock and dryrun 
