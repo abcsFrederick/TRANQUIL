@@ -61,8 +61,8 @@ if not os.path.exists(join(WORKDIR,"fastqs")):
     os.mkdir(join(WORKDIR,"fastqs"))
 if not os.path.exists(RESULTSDIR):
     os.mkdir(RESULTSDIR)
-if not os.path.exists(join(RESOURCESDIR,"fastqs")):
-    os.mkdir(join(RESOURCESDIR,"fastqs"))
+if not os.path.exists(join(RESULTSDIR,"fastqs")):
+    os.mkdir(join(RESULTSDIR,"fastqs"))
 
 # check read access to required files
 for f in ["samplemanifest"]:
