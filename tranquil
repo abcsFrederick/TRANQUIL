@@ -529,7 +529,8 @@ snakemake $1 -s $SNAKEFILE \
 -j 500 \
 --rerun-incomplete \
 --keep-going \
---stats ${WORKDIR}/snakemake.stats | tee > ${WORKDIR}/dryrun.log
+--stats ${WORKDIR}/snakemake.stats > ${WORKDIR}/dryrun.log 2>&1
+cat ${WORKDIR}/dryrun.log 
 
   else # for unlock
 
