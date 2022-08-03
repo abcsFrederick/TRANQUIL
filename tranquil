@@ -151,10 +151,10 @@ function init() {
 if [ -d $WORKDIR ];then err "Folder $WORKDIR already exists!"; fi
 mkdir -p $WORKDIR
 
-if [ ! -d $WORKDIR/resources ];then
-  cp -r $RESOURCESDIR $WORKDIR/
+if [ ! -d $WORKRESOURCESDIR ];then
+  mkdir -p $WORKRESOURCESDIR
+  cp -r $RESOURCESDIR/ $WORKRESOURCESDIR/
 fi
-WORKRESOURCESDIR="${WORKDIR}/resources"
 
 # copy config and samples files
 _set_config
@@ -578,6 +578,7 @@ function main(){
       ;;
       -w=*|--workdir=*)
         WORKDIR="${i#*=}"
+        WORKRESOURCESDIR="${WORKDIR}/resources"
       ;;
       *)
         err "Unknown argument!"    # unknown option
