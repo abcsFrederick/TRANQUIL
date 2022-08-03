@@ -127,6 +127,7 @@ function _set_config() {
 
 sed -e "s/PIPELINE_HOME/${PIPELINE_HOME//\//\\/}/g" \
     -e "s/WORKDIR/${WORKDIR//\//\\/}/g" \
+    -e "s/WORKRESOURCESDIR/${WORKRESOURCESDIR//\//\\/}/g" \
     ${PIPELINE_HOME}/config/config.yaml > $WORKDIR/config.yaml
 
 }
@@ -157,6 +158,7 @@ _set_test_samplemanifest
 if [ ! -d $WORKDIR/resources ];then
   cp -r $RESOURCESDIR $WORKDIR/
 fi
+WORKRESOURCESDIR="${WORKDIR}/resources"
 
 #create log and stats folders
 if [ ! -d $WORKDIR/logs ]; then 
@@ -472,7 +474,7 @@ snakemake -s $SNAKEFILE \\
 --printshellcmds \\
 --latency-wait 120 \\
 --configfile ${WORKDIR}/config.yaml \\
---cluster-config ${PIPELINE_HOME}/resources/cluster.json \\
+--cluster-config ${WORKRESOURCESDIR}/cluster.json \\
 EOF
 
 if [ "$HOST" == "BIOWULF" ]; then
@@ -509,7 +511,12 @@ EOF
 
   sbatch ${WORKDIR}/submit_script.sbatch
 
-  else # for unlock and dryrun 
+  elif [ "$1" == "--dry-run" ];then
+
+  if [ -f ${WORKDIR}/dryrun.log ];then
+    modtime=$(_get_file_modtime ${WORKDIR}/dryrun.log)
+    mv ${WORKDIR}/dryrun.log ${WORKDIR}/logs/dryrun.log.${modtime}
+  fi
 
 snakemake $1 -s $SNAKEFILE \
 --directory $WORKDIR \
@@ -517,7 +524,22 @@ snakemake $1 -s $SNAKEFILE \
 --printshellcmds \
 --latency-wait 120 \
 --configfile ${WORKDIR}/config.yaml \
---cluster-config ${PIPELINE_HOME}/resources/cluster.json \
+--cluster-config ${WORKRESOURCESDIR}/cluster.json \
+--cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+-j 500 \
+--rerun-incomplete \
+--keep-going \
+--stats ${WORKDIR}/snakemake.stats | tee > ${WORKDIR}/dryrun.log
+
+  else # for unlock
+
+snakemake $1 -s $SNAKEFILE \
+--directory $WORKDIR \
+--use-envmodules \
+--printshellcmds \
+--latency-wait 120 \
+--configfile ${WORKDIR}/config.yaml \
+--cluster-config ${WORKRESOURCESDIR}/cluster.json \
 --cluster "sbatch --cpus-per-task {cluster.threads} -p {cluster.partition} -t {cluster.time} --mem {cluster.mem} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
 -j 500 \
 --rerun-incomplete \
@@ -525,6 +547,7 @@ snakemake $1 -s $SNAKEFILE \
 --stats ${WORKDIR}/snakemake.stats
 
   fi
+
 
 }
 
