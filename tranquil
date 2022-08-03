@@ -340,7 +340,7 @@ function create_runinfo() {
 
   if [ -f ${WORKDIR}/runinfo.yaml ];then
     modtime=$(_get_file_modtime ${WORKDIR}/runinfo.yaml)
-    mv ${WORKDIR}/runinfo.yaml ${WORKDIR}/runinfo.yaml.${modtime}
+    mv ${WORKDIR}/runinfo.yaml ${WORKDIR}/stats/runinfo.yaml.${modtime}
   fi
   echo "Pipeline Dir: $PIPELINE_HOME" > ${WORKDIR}/runinfo.yaml
   echo "Git Commit/Tag: $GIT_COMMIT_TAG" >> ${WORKDIR}/runinfo.yaml
@@ -352,7 +352,15 @@ function create_runinfo() {
   echo "Groups: $g" >> ${WORKDIR}/runinfo.yaml
   d=$(date)
   echo "Date/Time: $d" >> ${WORKDIR}/runinfo.yaml
-
+  echo "#################################################################"
+  echo "##########################config.yaml############################"
+  echo "#################################################################"
+  cat ${WORKDIR}/config.yaml >> ${WORKDIR}/runinfo.yaml
+  echo "#################################################################"
+  echo "##########################samples.tsv############################"
+  echo "#################################################################"
+  cat ${WORKDIR}/samples.tsv >> ${WORKDIR}/runinfo.yaml
+  echo "#################################################################"
 }
 
 
