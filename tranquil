@@ -151,14 +151,14 @@ function init() {
 if [ -d $WORKDIR ];then err "Folder $WORKDIR already exists!"; fi
 mkdir -p $WORKDIR
 
-# copy config and samples files
-_set_config
-_set_test_samplemanifest
-
 if [ ! -d $WORKDIR/resources ];then
   cp -r $RESOURCESDIR $WORKDIR/
 fi
 WORKRESOURCESDIR="${WORKDIR}/resources"
+
+# copy config and samples files
+_set_config
+_set_test_samplemanifest
 
 #create log and stats folders
 if [ ! -d $WORKDIR/logs ]; then 
