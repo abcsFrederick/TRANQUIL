@@ -37,12 +37,12 @@ else
 fi
 
 cd $tmpdir
-echo "{{params.repname}} : Trimming illumina sequencing adapter"
+echo "{params.repname} : Trimming illumina sequencing adapter"
 cutadapt -j {threads} \\
     -b {params.illumina_sequencing_adapter} -m {params.minlen} \\
     -o {params.repname}.trim_seq_adapter.fastq.gz \\
     {input.infq}
-echo "{{params.repname}} : Trimming linker"
+echo "{params.repname} : Trimming linker"
 cutadapt -j {threads} \\
     -b {params.linker} -m {params.minlen} \\
     -o {params.repname}.trim_seq_adapter.trim_linker.fastq.gz \\
