@@ -423,7 +423,7 @@ function run() {
   preruncleanup
 # if QOS is other than "global" and is supplied in the cluster.json file then add " --qos={cluster.qos}" to the 
 # snakemake command below
-  cat > ${WORKDIR}/submit_script.sbatch << EOF
+cat > ${WORKDIR}/submit_script.sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name="TRANQUIL"
 #SBATCH --mem=10g
@@ -498,6 +498,8 @@ fi
 bash <(curl https://raw.githubusercontent.com/CCBR/Tools/master/Biowulf/gather_cluster_stats.sh 2>/dev/null) ${WORKDIR}/snakemake.log > ${WORKDIR}/snakemake.log.HPC_summary.txt
 
 EOF
+
+exit
 
   sbatch ${WORKDIR}/submit_script.sbatch
 
