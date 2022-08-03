@@ -1,8 +1,8 @@
 rule trim:
     input:
-        infq = join(WORKDIR,"fastqs","{replicate}.fastq.gz")
+        infq = join(WORKDIR,"fastqs","{replicate}.R1.fastq.gz")
     output:
-        outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.fastq.gz")
+        outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz")
     envmodules:
         TOOLS["cutadapt"]["version"]
     container: 
