@@ -24,9 +24,9 @@ elif [ "$HOSTNAME" == "fsitgl-head01p.ncifcrf.gov" ];then
 fi
 # set extra singularity bindings
 if [ "$HOST" == "BIOWULF" ];then
-  EXTRA_SINGULARITY_BINDS="/lscratch, /data/CCBR_Pipeliner/"
+  EXTRA_SINGULARITY_BINDS="/lscratch,/data/CCBR_Pipeliner/"
 elif [ "$HOST" == "FRCE" ];then
-  EXTRA_SINGULARITY_BINDS="/scratch/cluster_scratch/${USER}, /mnt/projects/CCBR-Pipelines"
+  EXTRA_SINGULARITY_BINDS="/scratch/cluster_scratch/${USER},/mnt/projects/CCBR-Pipelines"
 else
   err Can only run on BIOWULF or FRCE
 fi
