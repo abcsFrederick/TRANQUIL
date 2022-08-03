@@ -99,7 +99,7 @@ for replicate in REPLICATES:
 #     R2file=REPLICATESDF["path_to_R2_fastq"][replicate]
 #     # print(replicate,R1file,R2file)
     check_readaccess(R1file)
-    R1filenewname=join(RESULTSDIR,"fastqs",replicate+".R1.fastq.gz")
+    R1filenewname=join(WORKDIR,"fastqs",replicate+".R1.fastq.gz")
     if not os.path.exists(R1filenewname):
         os.symlink(R1file,R1filenewname)
     REPLICATESDF.loc[[replicate],"R1"]=R1filenewname
