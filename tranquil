@@ -153,7 +153,7 @@ mkdir -p $WORKDIR
 
 if [ ! -d $WORKRESOURCESDIR ];then
   mkdir -p $WORKRESOURCESDIR
-  cp -r $RESOURCESDIR/ $WORKRESOURCESDIR
+  cp -a $RESOURCESDIR/. $WORKRESOURCESDIR/
 fi
 
 # copy config and samples files
