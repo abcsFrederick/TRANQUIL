@@ -5,6 +5,7 @@ workdir: "WORKDIR"
 # if you change resourcedir then the snakemake calls in the wrapper script will also need to be changed.
 # commenting out the following line uses the resources folder in WORKDIR
 resourcesdir: "WORKRESOURCESDIR"
+scriptsdir: "WORKSCRIPTSDIR"
 #
 # tab delimited samples file ... should have the following 3 columns
 # sampleName	replicateNumber	path_to_R1_fastq
@@ -17,5 +18,5 @@ samplemanifest: "WORKDIR/samples.tsv"
 illumina_sequencing_adapter: "GATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNNTCTCGTATGCCGTCTTCTGCTTG"  # generic illumin seq adapter
 linker: "NNNNNNCACTCGGGCACCAAGGA"                                                               # linker sequence
 n5trim: "4"                                                                                     # number of bases to trim from 5prime end
-nextseq_trim_q: "15"                                                                                    # min. len. after trimming
+nextseq_trim_q: "15"                                                                            # min. len. after trimming
 minlen: "10"                                                                                    # min. len. after trimming

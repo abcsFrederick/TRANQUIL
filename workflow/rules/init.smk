@@ -57,6 +57,13 @@ except KeyError:
     RESOURCESDIR = join(WORKDIR,"resources")
 check_existence(RESOURCESDIR)
 
+# get scripts folder
+try:
+    SCRIPTSDIR = config["scriptsdir"]
+except KeyError:
+    SCRIPTSDIR = join(WORKDIR,"scripts")
+check_existence(SCRIPTSDIR)
+
 if not os.path.exists(join(WORKDIR,"fastqs")):
     os.mkdir(join(WORKDIR,"fastqs"))
 if not os.path.exists(RESULTSDIR):
@@ -175,7 +182,7 @@ print("# Pipeline Parameters:")
 print("#"*100)
 print("# Working dir :",WORKDIR)
 print("# Results dir :",RESULTSDIR)
-# print("# Scripts dir :",SCRIPTSDIR)
+print("# Scripts dir :",SCRIPTSDIR)
 print("# Resources dir :",RESOURCESDIR)
 print("# Cluster JSON :",CLUSTERJSON)
 

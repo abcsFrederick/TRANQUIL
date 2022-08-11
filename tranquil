@@ -53,6 +53,7 @@ echo "#################################################################"
 echo "#################################################################"
 PIPELINE_HOME=$(readlink -f $(dirname "$0"))
 RESOURCESDIR="$PIPELINE_HOME/resources"
+SCRIPTSDIR="$PIPELINE_HOME/scripts"
 echo -ne "Pipeline Dir: \t\t $PIPELINE_HOME\n"
 SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
 echo -ne "Snakefile: \t\t $SNAKEFILE\n"
@@ -128,6 +129,7 @@ function _set_config() {
 sed -e "s/PIPELINE_HOME/${PIPELINE_HOME//\//\\/}/g" \
     -e "s/WORKDIR/${WORKDIR//\//\\/}/g" \
     -e "s/WORKRESOURCESDIR/${WORKRESOURCESDIR//\//\\/}/g" \
+    -e "s/WORKSCRIPTSDIR/${WORKSCRIPTSDIR//\//\\/}/g" \
     ${PIPELINE_HOME}/config/config.yaml > $WORKDIR/config.yaml
 
 }
@@ -155,6 +157,12 @@ if [ ! -d $WORKRESOURCESDIR ];then
   mkdir -p $WORKRESOURCESDIR
   cp -a $RESOURCESDIR/. $WORKRESOURCESDIR/
 fi
+
+if [ ! -d $WORKSCRIPTSDIR ];then
+  mkdir -p $WORKSCRIPTSDIR
+  cp -a $SCRIPTSDIR/. $WORKSCRIPTSDIR/
+fi
+
 
 # copy config and samples files
 _set_config
