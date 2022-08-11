@@ -172,9 +172,9 @@ for index, row in CONTRASTSDF.iterrows():
     out.close()
 
 
-print(SAMPLES)
-print(SAMPLES_IN_CONTRASTS)
-exit()
+# print(SAMPLES)
+# print(SAMPLES_IN_CONTRASTS)
+# exit()
 
 #########################################################
 # READ IN TOOLS REQUIRED BY PIPELINE
