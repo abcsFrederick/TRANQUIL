@@ -12,3 +12,4 @@ rule all:
         expand(join(RESOURCESDIR,"{contrast}","mimseq","CCAanalysis","CCAcounts.csv"),contrast=CONTRASTS),
 
 include: join("rules","preprocess.smk")
+include: join("rules","mimseq.smk")
