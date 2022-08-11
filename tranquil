@@ -588,6 +588,7 @@ function main(){
       -w=*|--workdir=*)
         WORKDIR="${i#*=}"
         WORKRESOURCESDIR="${WORKDIR}/resources"
+        WORKSCRIPTSDIR="${WORKDIR}/scripts"
       ;;
       *)
         err "Unknown argument!"    # unknown option
