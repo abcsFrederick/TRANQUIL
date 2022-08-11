@@ -138,6 +138,17 @@ for g in SAMPLES:
 # print(SAMPLE2REPLICATES)
 # exit()
 
+# read in contrasts
+CONTRASTSDF = pd.read_csv(config["contrasts"],sep="\t",header=0)
+SAMPLES_IN_CONTRASTS = list()
+SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group1'])
+SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group2'])
+if not set(SAMPLES_IN_CONTRASTS).issubset(SAMPLES):
+    exit("contrasts.tsv has samples which are absent in samples.tsv")
+print(SAMPLES)
+print(SAMPLES_IN_CONTRASTS)
+exit()
+
 #########################################################
 # READ IN TOOLS REQUIRED BY PIPELINE
 # THESE INCLUDE LIST OF BIOWULF MODULES (AND THEIR VERSIONS)

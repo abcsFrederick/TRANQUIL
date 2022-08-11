@@ -12,6 +12,7 @@ scriptsdir: "WORKSCRIPTSDIR"
 # samples need to have atleast 2 replicates
 #
 samplemanifest: "WORKDIR/samples.tsv"
+contrasts: "WORKDIR/contrasts.tsv"
 
 
 # trimming details
