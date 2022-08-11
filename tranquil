@@ -53,7 +53,7 @@ echo "#################################################################"
 echo "#################################################################"
 PIPELINE_HOME=$(readlink -f $(dirname "$0"))
 RESOURCESDIR="$PIPELINE_HOME/resources"
-SCRIPTSDIR="$PIPELINE_HOME/scripts"
+SCRIPTSDIR="$PIPELINE_HOME/workflow/scripts"
 echo -ne "Pipeline Dir: \t\t $PIPELINE_HOME\n"
 SNAKEFILE="${PIPELINE_HOME}/workflow/Snakefile"
 echo -ne "Snakefile: \t\t $SNAKEFILE\n"
