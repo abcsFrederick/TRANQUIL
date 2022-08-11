@@ -161,7 +161,7 @@ for c in CONTRASTS:
         os.mkdir(join(RESULTSDIR,c))
 
 for index, row in CONTRASTSDF.iterrows():
-    c = row['contrast']
+    c = index
     out = open(join(RESULTSDIR,c,"sampleinfo.txt"),'w')
     s1 = row['group1']
     s2 = row['group2']
