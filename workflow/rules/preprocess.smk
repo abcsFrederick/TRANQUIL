@@ -3,6 +3,7 @@ rule trim:
         infq = join(WORKDIR,"fastqs","{replicate}.R1.fastq.gz")
     output:
         outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz")
+        stats = temp(join(RESULTSDIR,"fastqs","{replicate}.readstats"))
     envmodules:
         TOOLS["cutadapt"]["version"]
     container: 
@@ -60,16 +61,33 @@ cutadapt -j {threads} \\
     -o {output.outfq} \\
     {params.repname}.trim_seq_adapter.trim_linker.trim_5prime.fastq.gz | tee ${{outdir}}/{params.repname}.log4
 
-echo -ne "{params.repname}" > ${{outdir}}/{params.repname}.stats
+echo -ne "{params.repname}" > {output.stats}
 for i in `seq 1 4`;do
-    stats=$(bash {params.read_stats_script} ${{outdir}}/{params.repname}.log${{i}})
-    echo -ne " $stats" >> ${{outdir}}/{params.repname}.stats
+    if [[ "$i" == "1" ]];then
+    outonly=0
+    else
+    outonly=1
+    fi
+    stats=$(bash {params.read_stats_script} ${{outdir}}/{params.repname}.log${{i}} $outonly)
+    rm -f ${{outdir}}/{params.repname}.log${{i}}
+    echo -ne " $stats" >> {output.stats}
 done
-echo -ne "\n" >> ${{outdir}}/{params.repname}.stats
+echo -ne "\n" >> {output.stats}
 
 # cleanup tmpdir
 if [ "$cleanup" == "1" ];then
     cd {params.workdir}
     rm -rf $tmpdir
 fi
+"""
+
+localrules: concat_stats
+rule concat_stats:
+    input:
+        stats=expand(join(RESULTSDIR,"fastqs","{replicate}.readstats"),replicate=REPLICATES)
+    output:
+        statstable=join(RESULTSDIR,"fastqs","readstats.txt")
+    shell:"""
+echo -ne "ReplicateName\tInput_Nreads\tInput_RL\tAfter_removing_seq_adapter_Nreads\tAfter_removing_seq_adapter_RL\tAfter_trimming_linker_Nreads\tAfter_trimming_linker_RL\tAfter_5prime_trimming_Nreads\tAfter_5prime_trimming_RL\tAfter_polyG_trimming_Nreads\tAfter_polyG_trimming_RL\n"
+cat {input.stats} | sed "s/ /\t/g" > {output.statstable}    
 """
