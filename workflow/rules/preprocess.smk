@@ -2,7 +2,7 @@ rule trim:
     input:
         infq = join(WORKDIR,"fastqs","{replicate}.R1.fastq.gz")
     output:
-        outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz")
+        outfq = join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz"),
         stats = temp(join(RESULTSDIR,"fastqs","{replicate}.readstats"))
     envmodules:
         TOOLS["cutadapt"]["version"]
