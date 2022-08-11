@@ -144,7 +144,12 @@ SAMPLES_IN_CONTRASTS = list()
 SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group1'])
 SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group2'])
 if not set(SAMPLES_IN_CONTRASTS).issubset(SAMPLES):
-    exit("contrasts.tsv has samples which are absent in samples.tsv")
+    exit("# contrasts.tsv has samples which are absent in samples.tsv")
+for s in SAMPLES_IN_CONTRASTS:
+    print(s)
+    print(len(SAMPLE2REPLICATES[s]))
+    if (not len(SAMPLE2REPLICATES[s])>=2):
+        exit("# Sample: %s does not have replicates!"%(s))
 print(SAMPLES)
 print(SAMPLES_IN_CONTRASTS)
 exit()
