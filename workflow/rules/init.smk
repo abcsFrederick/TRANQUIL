@@ -140,6 +140,11 @@ for g in SAMPLES:
 
 # read in contrasts
 CONTRASTSDF = pd.read_csv(config["contrasts"],sep="\t",header=0)
+CONTRASTSDF["contrast"] = CONTRASTSDF.apply(lambda row: row["group1"] + "_vs_" + row["group2"], axis=1)
+CONTRASTSDF = CONTRASTSDF.set_index("contrast")
+CONTRASTSDF = list(CONTRASTSDF.index)
+CONTRASTS = list(CONTRASTSDF["contrast"])
+
 SAMPLES_IN_CONTRASTS = list()
 SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group1'])
 SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group2'])
@@ -150,6 +155,24 @@ for s in SAMPLES_IN_CONTRASTS:
     print(len(SAMPLE2REPLICATES[s]))
     if (not len(SAMPLE2REPLICATES[s])>=2):
         exit("# Sample: %s does not have replicates!"%(s))
+
+# create output folders
+for c in CONTRASTS:
+    if not os.path.exists(join(RESULTSDIR,c)):
+        os.mkdir(join(RESULTSDIR,c))
+
+for index, row in CONTRASTSDF.iterrows():
+    c = row['contrast']
+    out = open(join(RESULTSDIR,c,"sampleinfo.txt"),'w')
+    s1 = row['group1']
+    s2 = row['group2']
+    for s in [s1, s2]:
+        for r in SAMPLE2REPLICATES[s]:
+            trimoutputfile = join(RESULTSDIR,"fastqs",r+".trim.R1.fastq.gz")
+            out.write("%s\t%s\n"%(trimoutputfile,s))
+    out.close()
+
+
 print(SAMPLES)
 print(SAMPLES_IN_CONTRASTS)
 exit()
