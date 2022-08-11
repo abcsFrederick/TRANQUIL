@@ -9,14 +9,14 @@ rule mimseq:
     params: 
         memg = getmemg("mimseq"),
         memG = getmemG("mimseq"),
-        mimseqspecies = config['mimseqspecies']
-        mimseqclusterid = config['mimseqclusterid']
-        mimseqmincov = config['mimseqmincov']
-        mimseqmaxmismatches = config['mimseqmaxmismatches']
-        mimseqmaxmulti = config["mimseqmaxmulti"]
-        mimseqremapmismatches = config['mimseqremapmismatches']
-        contrast = "{contrast}"
-        sampleinfo = join(RESULTSDIR,"{contrast}","sampleinfo.txt")
+        mimseqspecies = config['mimseqspecies'],
+        mimseqclusterid = config['mimseqclusterid'],
+        mimseqmincov = config['mimseqmincov'],
+        mimseqmaxmismatches = config['mimseqmaxmismatches'],
+        mimseqmaxmulti = config["mimseqmaxmulti"],
+        mimseqremapmismatches = config['mimseqremapmismatches'],
+        contrast = "{contrast}",
+        sampleinfo = join(RESULTSDIR,"{contrast}","sampleinfo.txt"),
         outdir = join(RESULTSDIR,"{contrast}","mimseq")
     shell:"""
 set -e -x -o pipefail
