@@ -62,7 +62,7 @@ cutadapt -j {threads} \\
 
 echo -ne "{params.repname}" > ${{outdir}}/{params.repname}.stats
 for i in `seq 1 4`;do
-    stats=$(bash {params.read_stats_script} ${{outdir}}/{params.repname}.log${i})
+    stats=$(bash {params.read_stats_script} ${{outdir}}/{params.repname}.log${{i}})
     echo -ne " $stats" >> ${{outdir}}/{params.repname}.stats
 done
 echo -ne "\n" >> ${{outdir}}/{params.repname}.stats
