@@ -10,5 +10,8 @@
 	},
 	"trim": {
 		"threads": "16"
+	},
+	"mimseq": {
+		"threads": "16"
 	}
 }

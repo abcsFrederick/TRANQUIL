@@ -21,3 +21,11 @@ linker: "NNNNNNCACTCGGGCACCAAGGA"                                               
 n5trim: "4"                                                                                     # number of bases to trim from 5prime end
 nextseq_trim_q: "15"                                                                            # min. len. after trimming
 minlen: "10"                                                                                    # min. len. after trimming
+
+# mimseq  details
+mimseqspecies: "Hsap"
+mimseqclusterid: "0.95"
+mimseqmincov: "0.0005"  
+mimseqmaxmismatches: "0.1"  
+mimseqmaxmulti: "4"
+mimseqremapmismatches: "0.075"

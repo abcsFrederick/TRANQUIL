@@ -8,7 +8,7 @@ rule all:
         expand(join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz"),replicate=REPLICATES),
         # readstats table
         join(RESULTSDIR,"fastqs","readstats.txt"),
-        # sampleinfo
-        # expand(join(RESULTSDIR,"{contrast}","sampleinfo.txt"),contrast=CONTRASTS),
+        # cca counts as output from mimseq
+        expand(join(RESOURCESDIR,"{contrast}","mimseq","CCAanalysis","CCAcounts.csv"),contrast=CONTRASTS),
 
 include: join("rules","preprocess.smk")
