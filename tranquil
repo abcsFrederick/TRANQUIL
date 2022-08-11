@@ -153,16 +153,20 @@ function init() {
 if [ -d $WORKDIR ];then err "Folder $WORKDIR already exists!"; fi
 mkdir -p $WORKDIR
 
+echo "COPYING resources ..."
 if [ ! -d $WORKRESOURCESDIR ];then
   mkdir -p $WORKRESOURCESDIR
   cp -a $RESOURCESDIR/. $WORKRESOURCESDIR/
 fi
+echo "COPYING scripts ..."
+echo $SCRIPTSDIR
+echo $WORKSCRIPTSDIR
 
 if [ ! -d $WORKSCRIPTSDIR ];then
   mkdir -p $WORKSCRIPTSDIR
   cp -a $SCRIPTSDIR/. $WORKSCRIPTSDIR/
 fi
-
+exit
 
 # copy config and samples files
 _set_config
