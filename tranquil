@@ -159,14 +159,10 @@ if [ ! -d $WORKRESOURCESDIR ];then
   cp -a $RESOURCESDIR/. $WORKRESOURCESDIR/
 fi
 echo "COPYING scripts ..."
-echo $SCRIPTSDIR
-echo $WORKSCRIPTSDIR
-
 if [ ! -d $WORKSCRIPTSDIR ];then
   mkdir -p $WORKSCRIPTSDIR
   cp -a $SCRIPTSDIR/. $WORKSCRIPTSDIR/
 fi
-exit
 
 # copy config and samples files
 _set_config
