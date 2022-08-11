@@ -142,8 +142,7 @@ for g in SAMPLES:
 CONTRASTSDF = pd.read_csv(config["contrasts"],sep="\t",header=0)
 CONTRASTSDF["contrast"] = CONTRASTSDF.apply(lambda row: row["group1"] + "_vs_" + row["group2"], axis=1)
 CONTRASTSDF = CONTRASTSDF.set_index("contrast")
-CONTRASTSDF = list(CONTRASTSDF.index)
-CONTRASTS = list(CONTRASTSDF["contrast"])
+CONTRASTS = list(CONTRASTSDF.index)
 
 SAMPLES_IN_CONTRASTS = list()
 SAMPLES_IN_CONTRASTS.extend(CONTRASTSDF['group1'])
