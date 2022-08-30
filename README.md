@@ -42,7 +42,7 @@ Required Arguments:
 ```
 In order to run the pipeline, there are 3 steps:
 
-  1. Initialize: Use the `init` mode to setup the output folder:
+  1. **<u>Initialize</u>**: Use the `init` mode to setup the output folder:
 
 ```bash
 $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil
@@ -74,7 +74,7 @@ Required Arguments:
 #################################################################
 ```
 
-  2. Enter Sample Manifest: Now edit the `samples.tsv` and `contrasts.tsv` in the output folder to reflect the names/locations of the sample input files and the desired contrasts.
+  2. **<u>Enter Sample Manifest</u>**: Now edit the `samples.tsv` and `contrasts.tsv` in the output folder to reflect the names/locations of the sample input files and the desired contrasts.
 
   `samples.tsv` has the following tab-delimited columns:
    
@@ -91,7 +91,7 @@ The group1 w.r.t. group2 contrast is run.
   
   > NOTE: By default the `samples.tsv` and `contrasts.tsv` will be pointing to the test dataset in the `.tests` folder.
 
-  3. Dry-run (and Run): The following command will run the dry-run and generate a `dryrun.log` in the output folder
+  3. **<u>Dry-run (and Run) </u>**: The following command will run the dry-run and generate a `dryrun.log` in the output folder
    
 ```bash
 $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_scratch/$USER/TRANQUIL_test -m=dry
