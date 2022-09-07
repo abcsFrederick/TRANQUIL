@@ -45,31 +45,25 @@ In order to run the pipeline, there are 3 steps:
   1. **<u>Initialize</u>**: Use the `init` mode to setup the output folder:
 
 ```bash
-$ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil
+$ bash /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_scratch/$USER/TRANQUIL_test -m=init
 #################################################################
 #################################################################
 Pipeline Dir: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL
 Snakefile: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/workflow/Snakefile
 Git Commit/Tag: 	 678ccfc1f3c0013690c2d09100619b9a5b7259ee
 Host: 			 FRCE
+COPYING resources ...
+COPYING scripts ...
+Logs Dir: 		 /scratch/cluster_scratch/kopardevn/TRANQUIL_test/logs
+Stats Dir: 		 /scratch/cluster_scratch/kopardevn/TRANQUIL_test/stats
 #################################################################
 #################################################################
-Running /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil ...
-TRANQUIL (TRna AbundaNce QUantification pIpeLine)
-#################################################################
-#################################################################
-USAGE:
-  bash /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -m/--runmode=<RUNMODE> -w/--workdir=<WORKDIR>
-Required Arguments:
-1.  RUNMODE: [Type: String] Valid options:
-    *) init : initialize workdir
-    *) run : run with slurm
-    *) reset : DELETE workdir dir and re-init it
-    *) dryrun : dry run snakemake to generate DAG
-    *) unlock : unlock workdir if locked by snakemake
-    *) runlocal : run without submitting to sbatch
-2.  WORKDIR: [Type: String]: Absolute or relative path to the
-             output folder with write permissions.
+Done Initializing /scratch/cluster_scratch/kopardevn/TRANQUIL_test.
+You can now edit
+/scratch/cluster_scratch/kopardevn/TRANQUIL_test/config.yaml
+/scratch/cluster_scratch/kopardevn/TRANQUIL_test/samples.tsv
+and
+/scratch/cluster_scratch/kopardevn/TRANQUIL_test/contrasts.tsv
 #################################################################
 #################################################################
 ```
