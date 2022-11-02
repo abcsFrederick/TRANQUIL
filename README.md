@@ -104,7 +104,7 @@ $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_s
   - trimmed fastqs prepared for mim-tRNAseq
   - `readstats.txt` tab-delimited file with trimming statistics
 
-- The `results` folder also contains one subfolder for each of the contrasts in the `contrasts.tsv` with the naming convention of "`<group1>_vs<group2>`". This folder has the mim-tRNAseq outputs.
+- The `results` folder also contains one subfolder for each of the contrasts in the `contrasts.tsv` with the naming convention of "`<group1>_vs_<group2>`". This folder has the mim-tRNAseq outputs.
 
 
 
