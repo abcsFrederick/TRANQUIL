@@ -15,7 +15,7 @@ rule mimseq:
         mimseqmaxmismatches = config['mimseqmaxmismatches'],
         mimseqmaxmulti = config["mimseqmaxmulti"],
         mimseqremapmismatches = config['mimseqremapmismatches'],
-        mimseq_flags = config['mimseq_flags']
+        mimseq_flags = config['mimseq_flags'],
         contrast = "{contrast}",
         sampleinfo = join(RESULTSDIR,"{contrast}","sampleinfo.txt"),
         outdir = join(RESULTSDIR,"{contrast}","mimseq")
