@@ -15,6 +15,7 @@ rule mimseq:
         mimseqmaxmismatches = config['mimseqmaxmismatches'],
         mimseqmaxmulti = config["mimseqmaxmulti"],
         mimseqremapmismatches = config['mimseqremapmismatches'],
+        mimseq_flags = config['mimseq_flags']
         contrast = "{contrast}",
         sampleinfo = join(RESULTSDIR,"{contrast}","sampleinfo.txt"),
         outdir = join(RESULTSDIR,"{contrast}","mimseq")
@@ -48,6 +49,7 @@ mimseq  \\
 --out-dir {params.outdir} \\
 --max-multi {params.mimseqmaxmulti} \\
 --remap  --remap-mismatches {params.mimseqremapmismatches} \\
+{params.mimseq_flags} \\
 {params.sampleinfo}
 
 # cleanup tmpdir
