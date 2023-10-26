@@ -4,9 +4,9 @@ rule mimseq:
         infq = expand(join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz"),replicate=REPLICATES)
     output:
         ccacounts = join(RESOURCESDIR,"{contrast}","mimseq","CCAanalysis","CCAcounts.csv")
-    container: TOOLS["mimseq"]["docker"]    
+    container: TOOLS["mimseq"]["docker"]
     threads: getthreads("mimseq")
-    params: 
+    params:
         memg = getmemg("mimseq"),
         memG = getmemG("mimseq"),
         mimseqspecies = config['mimseqspecies'],
@@ -22,7 +22,7 @@ rule mimseq:
     shell:"""
 set -e -x -o pipefail
 # set tmpdir
-if [ -w "/lscratch/${{SLURM_JOB_ID}}" ];then 
+if [ -w "/lscratch/${{SLURM_JOB_ID}}" ];then
     # if running on BIOWULF
     tmpdir="/lscratch/${{SLURM_JOB_ID}}"
     cleanup=0
