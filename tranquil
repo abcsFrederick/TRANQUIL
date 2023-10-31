@@ -471,8 +471,7 @@ elif [ "$HOST" == "FRCE" ];then
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
 module load singularity
-# Add my own version of python and snakemake to the PATH
-export PATH=/mnt/projects/CCBR-Pipelines/bin/:${PATH}
+module load snakemake
 EOF
 
 fi
@@ -484,7 +483,6 @@ snakemake -s $SNAKEFILE \\
 --directory $WORKDIR \\
 --use-singularity \\
 --singularity-args "$SINGULARITY_BINDS" \\
---use-envmodules \\
 --printshellcmds \\
 --latency-wait 120 \\
 --configfile ${WORKDIR}/config.yaml \\
