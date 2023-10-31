@@ -8,7 +8,7 @@ fastqc:
 hisat:
   version: "hisat/2.2.1.0"
 mimseq:
-  docker: "docker://kellysovacool/tranquil_mimseq:1.3.7.9000"
+  docker: "docker://kellysovacool/tranquil_mimseq:1.3.7-dev"
 multiqc:
   version: "multiqc/1.9"
 picard:
