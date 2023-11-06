@@ -482,7 +482,7 @@ cd \$SLURM_SUBMIT_DIR
 snakemake -s $SNAKEFILE \\
 --directory $WORKDIR \\
 --use-singularity \\
---singularity-args "$SINGULARITY_BINDS" \\
+--singularity-args "$SINGULARITY_BINDS --writeable" \\
 --printshellcmds \\
 --latency-wait 120 \\
 --configfile ${WORKDIR}/config.yaml \\
