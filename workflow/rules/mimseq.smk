@@ -4,9 +4,9 @@ rule mimseq:
         infq = expand(join(RESULTSDIR,"fastqs","{replicate}.trim.R1.fastq.gz"),replicate=REPLICATES)
     output:
         ccacounts = join(RESOURCESDIR,"{contrast}","mimseq","CCAanalysis","CCAcounts.csv")
-    container: TOOLS["mimseq"]["docker"]    
+    container: TOOLS["mimseq"]["docker"]
     threads: getthreads("mimseq")
-    params: 
+    params:
         memg = getmemg("mimseq"),
         memG = getmemG("mimseq"),
         mimseqspecies = config['mimseqspecies'],
@@ -15,13 +15,14 @@ rule mimseq:
         mimseqmaxmismatches = config['mimseqmaxmismatches'],
         mimseqmaxmulti = config["mimseqmaxmulti"],
         mimseqremapmismatches = config['mimseqremapmismatches'],
+        mimseq_flags = config['mimseq_flags'],
         contrast = "{contrast}",
         sampleinfo = join(RESULTSDIR,"{contrast}","sampleinfo.txt"),
         outdir = join(RESULTSDIR,"{contrast}","mimseq")
     shell:"""
 set -e -x -o pipefail
 # set tmpdir
-if [ -w "/lscratch/${{SLURM_JOB_ID}}" ];then 
+if [ -w "/lscratch/${{SLURM_JOB_ID}}" ];then
     # if running on BIOWULF
     tmpdir="/lscratch/${{SLURM_JOB_ID}}"
     cleanup=0
@@ -48,6 +49,7 @@ mimseq  \\
 --out-dir {params.outdir} \\
 --max-multi {params.mimseqmaxmulti} \\
 --remap  --remap-mismatches {params.mimseqremapmismatches} \\
+{params.mimseq_flags} \\
 {params.sampleinfo}
 
 # cleanup tmpdir

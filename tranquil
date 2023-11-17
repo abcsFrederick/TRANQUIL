@@ -16,6 +16,7 @@ module purge
 # only for BIOWULF
 PYTHON_VERSION="python/3.7"
 SNAKEMAKE_VERSION="snakemake/5.24.1"
+
 # are you on biowulf or frce?
 if [ "$HOSTNAME" == "biowulf.nih.gov" ]; then
   HOST="BIOWULF"
@@ -469,9 +470,8 @@ EOF
 elif [ "$HOST" == "FRCE" ];then
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
-module load singularity/3.7.2 > /dev/null
-# Add my own version of python and snakemake to the PATH
-export PATH=/mnt/projects/CCBR-Pipelines/bin/:${PATH}
+module load singularity
+module load snakemake
 EOF
 
 fi
@@ -483,7 +483,6 @@ snakemake -s $SNAKEFILE \\
 --directory $WORKDIR \\
 --use-singularity \\
 --singularity-args "$SINGULARITY_BINDS" \\
---use-envmodules \\
 --printshellcmds \\
 --latency-wait 120 \\
 --configfile ${WORKDIR}/config.yaml \\
