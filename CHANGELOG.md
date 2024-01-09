@@ -1,4 +1,4 @@
-## TRANQUIL development version
+## TRANQUIL 0.2.0
 
 - Now using a changelog to track user-facing changes.
 - Add a `mimseq_flags` option to the config file with `--local-modomics` set so users can customize mimseq flags. (#5, @kelly-sovacool)
