@@ -1,15 +1,18 @@
-## Background
+# TRANQUIL
 
-TRANQUIL or "TRna AbundaNce QUantification pIpeLine" is a Snakemake pipeline which quantifies tRNA using the [mim-tRNAseq](https://github.com/nedialkova-lab/mim-tRNAseq) tool. 
+TRna AbundaNce QUantification pIpeLine
 
-**mim-tRNAseq** is dockerized using [this](https://github.com/CCBR/mim-tRNAseq/blob/889364b0dc877aa05630eeda0bd42a01bd19bfc6/Dockerfile) recipe and pushed to [dockerhub](https://hub.docker.com/repository/docker/nciccbr/tranquil_mimseq) for general use.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10162347.svg)](https://doi.org/10.5281/zenodo.10162347)
+
+TRANQUIL is a Snakemake pipeline which quantifies tRNA using the [mim-tRNAseq](https://github.com/nedialkova-lab/mim-tRNAseq) tool.
+**mim-tRNAseq** is dockerized using [this](https://github.com/CCBR/mim-tRNAseq/blob/889364b0dc877aa05630eeda0bd42a01bd19bfc6/Dockerfile) recipe
+and pushed to [dockerhub](https://hub.docker.com/repository/docker/nciccbr/tranquil_mimseq) for general use.
 
 > The pipeline is developed with the intention of executing it on [Biowulf](https://hpc.nih.gov/) or [FRCE](https://ncifrederick.cancer.gov/staff/frce/welcome) clusters. Hence, may have some Biowulf/FRCE specific hardcoding.
 
-
 ## Running on FRCE
 
-Pipeline code has been checked out at `/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL` and is available for all users of FRCE. 
+Pipeline code has been checked out at `/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL` and is available for all users of FRCE.
 
 ```bash
 $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil
@@ -40,9 +43,10 @@ Required Arguments:
 #################################################################
 #################################################################
 ```
+
 In order to run the pipeline, there are 3 steps:
 
-  1. **<u>Initialize</u>**: Use the `init` mode to setup the output folder:
+1. **<u>Initialize</u>**: Use the `init` mode to setup the output folder:
 
 ```bash
 $ bash /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_scratch/$USER/TRANQUIL_test -m=init
@@ -68,25 +72,25 @@ and
 #################################################################
 ```
 
-  2. **<u>Enter Sample Manifest</u>**: Now edit the `samples.tsv` and `contrasts.tsv` in the output folder to reflect the names/locations of the sample input files and the desired contrasts.
+2. **<u>Enter Sample Manifest</u>**: Now edit the `samples.tsv` and `contrasts.tsv` in the output folder to reflect the names/locations of the sample input files and the desired contrasts.
 
-  `samples.tsv` has the following tab-delimited columns:
-   
+`samples.tsv` has the following tab-delimited columns:
+
     - sampleName
-    - replicateNumber	
+    - replicateNumber
     - path_to_R1_fastq
-  
-  `contrasts.tsv` has the following tab-delimited columns:
+
+`contrasts.tsv` has the following tab-delimited columns:
 
     - group1
     - group2
 
 The group1 w.r.t. group2 contrast is run.
-  
-  > NOTE: By default the `samples.tsv` and `contrasts.tsv` will be pointing to the test dataset in the `.tests` folder.
 
-  3. **<u>Dry-run (and Run) </u>**: The following command will run the dry-run and generate a `dryrun.log` in the output folder
-   
+> NOTE: By default the `samples.tsv` and `contrasts.tsv` will be pointing to the test dataset in the `.tests` folder.
+
+3. **<u>Dry-run (and Run) </u>**: The following command will run the dry-run and generate a `dryrun.log` in the output folder
+
 ```bash
 $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_scratch/$USER/TRANQUIL_test -m=dry
 ```
@@ -105,7 +109,5 @@ $ /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -w=/scratch/cluster_s
   - `readstats.txt` tab-delimited file with trimming statistics
 
 - The `results` folder also contains one subfolder for each of the contrasts in the `contrasts.tsv` with the naming convention of "`<group1>_vs_<group2>`". This folder has the mim-tRNAseq outputs.
-
-
 
 > Please send any comments/suggestions/requests to [Vishal Koparde](https://github.com/kopardev) via [email](mailto:vishal.koparde@nih.gov).
