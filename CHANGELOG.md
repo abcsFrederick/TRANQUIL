@@ -1,3 +1,7 @@
+## TRANQUIL development version
+
+- Redirect the website to the README. (#8, @kelly-sovacool)
+
 ## TRANQUIL 0.2.0
 
 - Now using a changelog to track user-facing changes.
