@@ -1,5 +1,0 @@
-sampleName	replicateNumber	path_to_R1_fastq
-Tet1n2DKOalkBtRNA	1	PIPELINE_HOME/.tests/Tet1n2DKOalkBtRNA.subset.rep1.fastq.gz
-Tet1n2DKOalkBtRNA	2	PIPELINE_HOME/.tests/Tet1n2DKOalkBtRNA.subset.rep1.fastq.gz
-WTtRNA	1	PIPELINE_HOME/.tests/WTtRNA.subset.rep1.fastq.gz
-WTtRNA	2	PIPELINE_HOME/.tests/WTtRNA.subset.rep1.fastq.gz
