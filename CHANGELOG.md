@@ -1,4 +1,4 @@
-## TRANQUIL development version
+## TRANQUIL 0.2.1
 
 - Redirect the website to the README. (#8, @kelly-sovacool)
 - Use our custom installation of Python and Snakemake when running the pipeline with SLURM on FRCE. (#9, @kelly-sovacool)

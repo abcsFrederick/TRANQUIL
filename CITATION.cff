@@ -17,5 +17,5 @@ identifiers:
   - description: "Archived snapshots of all versions"
     type: doi
     value: "10.5281/zenodo.10162347"
-version: v0.2.0
-date-released: 2024-01-09
+version: v0.2.1
+date-released: 2024-02-22
