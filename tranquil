@@ -470,8 +470,8 @@ EOF
 elif [ "$HOST" == "FRCE" ];then
 
 cat >> ${WORKDIR}/submit_script.sbatch << EOF
-module load singularity
-module load snakemake
+export PATH=/mnt/projects/CCBR-Pipelines/bin/:${PATH}
+module load singularity/3.10.5
 EOF
 
 fi
