@@ -3,6 +3,7 @@
 TRna AbundaNce QUantification pIpeLine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10162347.svg)](https://doi.org/10.5281/zenodo.10162347)
+[![release](https://img.shields.io/github/v/release/CCBR/TRANQUIL?color=blue&label=latest%20release)](https://github.com/ccbr/TRANQUIL/releases/latest)
 
 TRANQUIL is a Snakemake pipeline which quantifies tRNA using the [mim-tRNAseq](https://github.com/nedialkova-lab/mim-tRNAseq) tool.
 **mim-tRNAseq** is dockerized using [this](https://github.com/CCBR/mim-tRNAseq/blob/889364b0dc877aa05630eeda0bd42a01bd19bfc6/Dockerfile) recipe
