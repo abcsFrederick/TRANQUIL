@@ -1,4 +1,4 @@
-## TRANQUIL development version
+## TRANQUIL 0.3.0
 
 - Run fastq validator before cutadapt to ensure the input fastq files are valid. (#13, @kelly-sovacool)
 - Fix bug where mimseq results were not recognized in correct location by snakemake. (#16, @kelly-sovacool)
