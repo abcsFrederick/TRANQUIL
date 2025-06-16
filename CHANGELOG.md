@@ -1,3 +1,5 @@
+## TRANQUIL development version
+
 ## TRANQUIL 0.3.0
 
 - Run fastq validator before cutadapt to ensure the input fastq files are valid. (#13, @kelly-sovacool)
