@@ -16,24 +16,24 @@ and pushed to [dockerhub](https://hub.docker.com/repository/docker/nciccbr/tranq
 Pipeline code has been checked out at `/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL` and is available for all users of FRCE.
 
 ```bash
-/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil
+/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil
 ```
 
 ```
 #################################################################
 #################################################################
 Pipeline Dir: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL
-Snakefile: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/workflow/Snakefile
+Snakefile: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/workflow/Snakefile
 Git Commit/Tag: 	 678ccfc1f3c0013690c2d09100619b9a5b7259ee
 Host: 			 FRCE
 #################################################################
 #################################################################
-Running /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil ...
+Running /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil ...
 TRANQUIL (TRna AbundaNce QUantification pIpeLine)
 #################################################################
 #################################################################
 USAGE:
-  bash /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil -m/--runmode=<RUNMODE> -w/--workdir=<WORKDIR>
+  bash /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil -m/--runmode=<RUNMODE> -w/--workdir=<WORKDIR>
 Required Arguments:
 1.  RUNMODE: [Type: String] Valid options:
     *) init : initialize workdir
@@ -53,7 +53,7 @@ In order to run the pipeline, there are 3 steps:
 1. **<u>Initialize</u>**: Use the `init` mode to setup the output folder:
 
 ```bash
-/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil \
+/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil \
   -w=/scratch/cluster_scratch/$USER/TRANQUIL_test \
   -m=init
 ```
@@ -62,7 +62,7 @@ In order to run the pipeline, there are 3 steps:
 #################################################################
 #################################################################
 Pipeline Dir: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL
-Snakefile: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/workflow/Snakefile
+Snakefile: 		 /mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/workflow/Snakefile
 Git Commit/Tag: 	 678ccfc1f3c0013690c2d09100619b9a5b7259ee
 Host: 			 FRCE
 COPYING resources ...
@@ -101,7 +101,7 @@ The group1 w.r.t. group2 contrast is run.
 3. **<u>Dry-run (and Run) </u>**: The following command will run the dry-run and generate a `dryrun.log` in the output folder
 
 ```bash
-/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil \
+/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil \
   -w=/scratch/cluster_scratch/$USER/TRANQUIL_test \
   -m=dryrun
 ```
@@ -109,7 +109,7 @@ The group1 w.r.t. group2 contrast is run.
 Once everything looks ok, the job can be run on the cluster by switching the **mode** from `dry` to `run`, like so:
 
 ```bash
-/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/tranquil \
+/mnt/projects/CCBR-Pipelines/pipelines/TRANQUIL/latest/tranquil \
   -w=/scratch/cluster_scratch/$USER/TRANQUIL_test \
   -m=run
 ```
